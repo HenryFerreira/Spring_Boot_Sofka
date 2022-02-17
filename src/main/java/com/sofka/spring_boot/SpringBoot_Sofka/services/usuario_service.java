@@ -32,11 +32,19 @@ public class usuario_service {
     public Optional<usuario_model> obtener_usuario_por_id(Long id){
         return usuario_repository.findById(id);
     }
+
     //Se utiliza el metodo abstracto creado en usuario_repository
     //Obtiene los usuarios de la Tabla usuarios mediante si prioridad
     public ArrayList<usuario_model> obtener_usuario_por_prioridad(Integer prioridad){
         return usuario_repository.findByPrioridad(prioridad);
     }
+
+    //Se utiliza el metodo abstracto creado en usuario_repository
+    //Obtiene los usuarios de la Tabla usuarios mediante si email
+    public ArrayList<usuario_model> obtener_usuario_por_email(String email){
+        return usuario_repository.findByEmail(email);
+    }
+
 
     //Elimina un usuario de la Tabla usuarios
     public boolean eliminar_usuario(Long id){

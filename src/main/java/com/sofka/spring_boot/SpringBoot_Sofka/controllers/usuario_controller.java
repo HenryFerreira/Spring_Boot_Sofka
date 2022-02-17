@@ -37,6 +37,12 @@ public class usuario_controller {
         return this.usuario_service.obtener_usuario_por_prioridad(prioridad);//implementa el metodo de usuario_service
     }
 
+    @GetMapping("/byEmail")//Creando otro servicio - ej: localhost/query?email=1
+    public ArrayList<usuario_model> obtener_usaurio_por_email(@RequestParam("email") String email){/* Obtiene
+         el valor del parametro de la URL y se lo pasa por parametro al metodo*/
+        return this.usuario_service.obtener_usuario_por_email(email);//implementa el metodo de usuario_service
+    }
+
     @DeleteMapping(path = "/{id}")
     public String eliminar_usuario_por_id(@PathVariable("id") Long id){/* Con PathVariable
          obtenemos la id de la URL y se la pasamos como parametro al metodo*/

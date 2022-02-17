@@ -11,4 +11,8 @@ import java.util.ArrayList;
 public interface usuario_repository extends CrudRepository<usuario_model, Long> {
     //Permite buscar a todos los usuarios con una prioridad en espesifico
     public abstract ArrayList<usuario_model> findByPrioridad(Integer prioridad);
+    //Permite buscar a todos los usuarios con una email en espesifico
+    public abstract ArrayList<usuario_model> findByEmail(String email);
+
+
 }
