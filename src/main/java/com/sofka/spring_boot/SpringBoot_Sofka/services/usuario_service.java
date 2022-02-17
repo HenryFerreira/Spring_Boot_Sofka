@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service//--> Indica que es una clase de tipo Servicio
 public class usuario_service {
@@ -19,6 +20,33 @@ public class usuario_service {
 
     //Inserta un usuario en la Tabla usuario
     public usuario_model guardar_usuario(usuario_model usuario){
+        //Con 'save' si no se le envia el Id se entiende que se quiere insertar un dato
+        //pero si le pasamos el Id se entiende que queremos actualizar un dato
         return usuario_repository.save(usuario);
     }
+
+    //Metodos por Defecto del Repositorio
+
+    //Obtiene los usuarios de la Tabla usuarios mediante su ID
+    //Optional nos devuelve algo si encuentra lo buscado y si no lo encuentra tambiém
+    public Optional<usuario_model> obtener_usuario_por_id(Long id){
+        return usuario_repository.findById(id);
+    }
+    //Se utiliza el metodo abstracto creado en usuario_repository
+    //Obtiene los usuarios de la Tabla usuarios mediante si prioridad
+    public ArrayList<usuario_model> obtener_usuario_por_prioridad(Integer prioridad){
+        return usuario_repository.findByPrioridad(prioridad);
+    }
+
+    //Elimina un usuario de la Tabla usuarios
+    public boolean eliminar_usuario(Long id){
+        try {//Si lo elimina devuelve true
+            usuario_repository.deleteById(id);
+            return true;
+        } catch (Exception e) {//En caso contrario devuelve false
+            return false;
+        }
+    }
+
+
 }
